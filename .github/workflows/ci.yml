@@ -1,0 +1,23 @@
+name: Sistem Penjaga Kualitas Kode (CI)
+
+on:
+  push:
+    branches: [ "main", "fitur-testing" ]
+
+jobs:
+  pengujian-otomatis:
+    runs-on: ubuntu-latest # Robot menyewa komputer Linux Ubuntu versi terbaru
+
+    steps:
+      - name: Mengambil kodingan dari GitHub
+        uses: actions/checkout@v3
+
+      - name: Memasang Java 21 di dalam Robot
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Menjalankan JUnit 5 (Automated Test)
+        run: mvn clean test
