@@ -33,6 +33,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // PENTING: URL ini boleh diakses TANPA Login
                         .requestMatchers("/api/auth/**").permitAll()
+
+                        .requestMatchers("/", "/*.html", "/*.js", "/*.css").permitAll()
                         // Sisanya WAJIB Login
                         .anyRequest().authenticated()
                 )
