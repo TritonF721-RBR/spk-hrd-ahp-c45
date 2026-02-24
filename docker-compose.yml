@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  # 1. Membangun Container Database PostgreSQL
+  db:
+    image: postgres:15-alpine
+    container_name: postgres_spk
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin1234
+      POSTGRES_DB: db_spk_rs
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data # Agar data tidak hilang saat Docker dimatikan
+
+  # 2. Membangun Container Spring Boot
+  app:
+    build: .
+    container_name: springboot_spk
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      # PENTING: Kita timpa localhost menjadi 'db' (nama container di atas)
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/db_spk_rs
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: admin1234
+
+volumes:
+  pgdata:

@@ -117,11 +117,45 @@
 
     <div id="kriteriaSec" class="hidden">
         <h2>📝 Kriteria Kinerja & Bobot AHP</h2>
-        <div class="card p-3">
+
+        <button type="button" onclick="suntikKriteriaAwal()" class="btn btn-warning mb-3 fw-bold shadow-sm">
+            🚀 Setup Awal 5 Kriteria Dasar
+        </button>
+
+        <div class="card p-3 mb-4 shadow-sm">
             <table class="table table-bordered table-striped mb-0">
-                <thead class="table-dark"><tr><th>Kode</th><th>Nama Kriteria</th><th>Sifat</th><th>Bobot AHP</th></tr></thead>
-                <tbody id="tabelKriteria"></tbody>
+                <thead class="table-dark">
+                <tr><th>Kode</th><th>Nama Kriteria</th><th>Sifat</th><th>Bobot AHP</th></tr>
+                </thead>
+                <tbody id="tabelKriteria">
+                </tbody>
             </table>
+        </div>
+
+        <div class="card p-4 shadow-sm">
+            <h3 class="border-bottom border-primary pb-2 mb-3">⚖️ Input Matriks Perbandingan AHP</h3>
+            <p>Masukkan nilai perbandingan (Contoh: 2, 5, atau 0.333):</p>
+
+            <form id="formAhp" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div><label>Kualitas (C1) vs Skill (C2):</label> <input type="number" step="any" id="c1_2" class="form-control" required></div>
+                <div><label>Kualitas (C1) vs Absensi (C3):</label> <input type="number" step="any" id="c1_3" class="form-control" required></div>
+                <div><label>Kualitas (C1) vs Kerjasama (C4):</label> <input type="number" step="any" id="c1_4" class="form-control" required></div>
+                <div><label>Kualitas (C1) vs T. Jawab (C5):</label> <input type="number" step="any" id="c1_5" class="form-control" required></div>
+
+                <div><label>Skill (C2) vs Absensi (C3):</label> <input type="number" step="any" id="c2_3" class="form-control" required></div>
+                <div><label>Skill (C2) vs Kerjasama (C4):</label> <input type="number" step="any" id="c2_4" class="form-control" required></div>
+                <div><label>Skill (C2) vs T. Jawab (C5):</label> <input type="number" step="any" id="c2_5" class="form-control" required></div>
+
+                <div><label>Absensi (C3) vs Kerjasama (C4):</label> <input type="number" step="any" id="c3_4" class="form-control" required></div>
+                <div><label>Absensi (C3) vs T. Jawab (C5):</label> <input type="number" step="any" id="c3_5" class="form-control" required></div>
+                <div><label>Kerjasama (C4) vs T. Jawab (C5):</label> <input type="number" step="any" id="c4_5" class="form-control" required></div>
+
+                <div style="grid-column: 1 / -1; margin-top: 15px;">
+                    <button type="submit" class="btn btn-success w-100 fw-bold fs-5">
+                        💾 Hitung & Simpan Bobot AHP
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 
